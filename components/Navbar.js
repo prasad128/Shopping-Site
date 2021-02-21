@@ -28,9 +28,14 @@ const Navbar = () => {
   console.log("Start", startTotal);
   return (
     <div className="sticky top-0 left-0 right-0 z-10 flex items-center justify-between max-w-md px-6 py-2 mx-auto bg-white bg-opacity-100 border-b-2 border-gray-400 sm:px-6 sm:pt-4 md:pt-8 sm:max-w-4xl">
-      <button onClick={() => setActive("items")} className={itemClass("items")}>
-        <Link href="/">Items</Link>
-      </button>
+      <Link href="/">
+        <button
+          onClick={() => setActive("items")}
+          className={itemClass("items")}
+        >
+          Items
+        </button>
+      </Link>
       <div className="flex items-center text-gray-900 sm:text-lg">
         <div className="mr-px">
           <MdShoppingCart className="" />
@@ -43,9 +48,11 @@ const Navbar = () => {
         </div>
       </div>
       {/* <CountUp start={total} end={Math.round(total)}/> */}
-      <button onClick={() => setActive("cart")} className={itemClass("cart")}>
-        <Link href="/cart">Cart</Link>
-      </button>
+      <Link href="/cart">
+        <button onClick={() => setActive("cart")} className={itemClass("cart")}>
+          Cart
+        </button>
+      </Link>
     </div>
   );
 };
