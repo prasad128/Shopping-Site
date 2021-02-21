@@ -1,65 +1,30 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { useContext } from "react";
+import { ShoppingContext } from "../contextAPI/shoppingContext";
+import Item from "../components/item";
+// import "../styles.css";
+// import { motion } from "framer-motion";
 
-export default function Home() {
+const ItemsPage = () => {
+  // const [addButton, setAddButton] = React.useState(false);
+  const { items, handleCart } = useContext(ShoppingContext);
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <div className="grid grid-cols-1 gap-6 px-6 py-6 sm:px-6 sm:py-6 md:gap-6 sm:grid-cols-2">
+      {items.map((item) => (
+        <div key={item.id}>
+          <Item item={item}>
+            <button
+              id="active"
+              onClick={() => handleCart(item)}
+              className="px-2 py-px text-sm text-gray-600 border-2 border-gray-600 rounded hover:bg-gray-600 hover:border-transparent hover:text-white focus:outline-none"
+            >
+              Add To Cart
+            </button>
+          </Item>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      ))}
     </div>
-  )
-}
+  );
+};
+
+export default ItemsPage;
